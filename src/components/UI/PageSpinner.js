@@ -1,4 +1,5 @@
 import Spinner from "./Spinner";
+import React from "react";
 
 export default function PageSpinner () {
   return (

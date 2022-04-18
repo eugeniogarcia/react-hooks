@@ -1,3 +1,4 @@
+import React from "react";
 import {animated} from "react-spring";
 
 import {useSlide} from "./bookingsHooks";
