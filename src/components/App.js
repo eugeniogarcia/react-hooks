@@ -1,12 +1,15 @@
 import React,{lazy, Suspense, Fragment} from "react";
 import {QueryClient, QueryClientProvider} from "react-query";
+
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   Link
 } from "react-router-dom";
+
 import "../App.css";
+
 import {FaCalendarAlt, FaDoorOpen, FaUsers} from "react-icons/fa";
 import UserPicker from "./Users/UserPicker.js";
 import PageSpinner from "./UI/PageSpinner";
