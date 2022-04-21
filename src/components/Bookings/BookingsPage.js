@@ -9,20 +9,21 @@ import BookablesList from "../Bookables/BookablesList";
 import Bookings from "./Bookings";
 
 export default function BookingsPage () {
-  const {data: bookables = []} = useQuery(
-    "bookables",
-    () => getData("http://localhost:3001/bookables"),
+  //Obtiene todos los bookables
+  //useQuery retorna un objeto con propiedades data, status, isError, isFetched, etc. 
+  const {data: bookables = []} = useQuery("bookables",() => getData("http://localhost:3001/bookables"),
     {
       suspense: true // enable suspense mode
     }
   );
 
+  //Obtiene los datos del query string. Si no hay query string, el hook hace que date valga el current ts, y bookableId undefined
   const {date, bookableId} = useBookingsParams();
 
-  const bookable = bookables.find(
-    b => b.id === bookableId
-  ) || bookables[0];
+  //Busca el booking con el id indicado, y en caso de no encontralo, toma el primer booking
+  const bookable = bookables.find(b => b.id === bookableId) || bookables[0];
 
+  //Obtiene el path para obtener los bookings
   function getUrl (id) {
     const root = `/bookings?bookableId=${id}`;
     return date ? `${root}&date=${shortISO(date)}` : root;

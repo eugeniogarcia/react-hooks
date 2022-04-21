@@ -35,17 +35,19 @@ export function useGrid (bookable, startDate) {
 }
 
 export function useBookingsParams () {
+  //Recupera la querystring, y una funcion que nos permite manipularla
   const [searchParams, setSearchParams] = useSearchParams();
+  //Obtenemos los valores de las variables date y bookableId del querystring. Undefined si la variable no existe
   const searchDate = searchParams.get("date");
   const bookableId = searchParams.get("bookableId");
 
-  const date = isDate(searchDate)
-    ? new Date(searchDate)
-    : new Date();
+  //Obtenemos la fecha. 
+  const date = isDate(searchDate)? new Date(searchDate): new Date();
 
   const idInt = parseInt(bookableId, 10);
   const hasId = !isNaN(idInt);
 
+  //Creamos un handler que nos permitirá especificar la fecha en el query string - manteniendo el bookableId
   function setBookingsDate (date) {
     const params = {};
 
@@ -146,6 +148,8 @@ function getSlideStyles (date1, date2) {
   };
 }
 
+//EGSM. react-spring con react v18
+/*
 export function useSlide (bookable, week) {
   const weekStart = shortISO(week.start);
   const weekRef = useRef(weekStart);
@@ -154,9 +158,20 @@ export function useSlide (bookable, week) {
     weekRef.current = weekStart;
   }, [weekStart]);
 
-  return useTransition(
-    {bookable, week},
+  return useTransition({bookable, week},
     item => `${item.bookable.id}_${shortISO(item.week.start)}`,
     getSlideStyles(weekRef.current, weekStart)
   );
 }
+*/
+export function useSlide (bookable, week) {
+  const weekStart = shortISO(week.start);
+  const weekRef = useRef(weekStart);
+
+  useEffect(() => {
+    weekRef.current = weekStart;
+  }, [weekStart]);
+
+  return `${bookable.id}_${shortISO(week.start)}`
+}
+//EGSM. react-spring con react v18

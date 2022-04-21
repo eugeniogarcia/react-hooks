@@ -16,7 +16,7 @@ export default function Bookings ({bookable}) {
 
   const {bookings} = useBookings(bookable?.id, week.start, week.end);
   const selectedBooking = bookings?.[booking?.session]?.[booking.date];
-
+ 
   useEffect(() => {
     setBooking(null);
   }, [bookable, weekStart]);

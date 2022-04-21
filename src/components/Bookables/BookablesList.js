@@ -5,14 +5,13 @@ import {FaArrowRight} from "react-icons/fa";
 export default function BookablesList ({bookable, bookables, getUrl}) {
   const group = bookable?.group;
   const bookablesInGroup = bookables.filter(b => b.group === group);
+  //Crea un Set para que del array de groups, se eliminen los duplicados. A continuación usa destructuring para crear el array, que ya no tendrá duplicados
   const groups = [...new Set(bookables.map(b => b.group))];
 
   const navigate = useNavigate();
 
   function changeGroup (event) {
-    const bookablesInSelectedGroup = bookables.filter(
-      b => b.group === event.target.value
-    );
+    const bookablesInSelectedGroup = bookables.filter(b => b.group === event.target.value);
     navigate(getUrl(bookablesInSelectedGroup[0].id));
   }
 

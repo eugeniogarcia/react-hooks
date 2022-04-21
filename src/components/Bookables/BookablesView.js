@@ -1,3 +1,4 @@
+import React from "react"; 
 import {Link, useParams} from "react-router-dom";
 import {FaPlus} from "react-icons/fa";
 
@@ -17,9 +18,8 @@ export default function BookablesView () {
   );
 
   const {id} = useParams();
-  const bookable = bookables.find(
-    b => b.id === parseInt(id, 10)
-  ) || bookables[0];
+  //Si id es undefined, usaremos bookables[0]. Puede ser undefined porque id sea undefined, o porque el id no lo tengamos en el array de bookables
+  const bookable = bookables.find(b => b.id === parseInt(id, 10)) || bookables[0];
 
   return (
     <main className="bookables-page">

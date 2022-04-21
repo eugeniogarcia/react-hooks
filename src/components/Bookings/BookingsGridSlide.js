@@ -8,7 +8,8 @@ import BookingsGrid from "./BookingsGrid";
 export default function BookingsGridSlide (props) {
   const {week, bookable, booking, setBooking} = props;
 
-  const transitions = useSlide(bookable, week);
+  //EGSM. react-spring con react v18
+  /*const transitions = useSlide(bookable, week);
 
   return (
     <div className="grid-wrapper">
@@ -28,4 +29,19 @@ export default function BookingsGridSlide (props) {
       ))}
     </div>
   );
+  */
+
+  return (
+    <div className="grid-wrapper">
+        <div className="grid">
+          <BookingsGrid
+            week={week}
+            bookable={bookable}
+            booking={booking}
+            setBooking={setBooking}
+          />
+        </div>
+    </div>
+  );
+  //EGSM. react-spring con react v18
 }
