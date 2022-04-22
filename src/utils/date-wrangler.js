@@ -19,4 +19,5 @@ export function shortISO (date) {
   return date.toISOString().split("T")[0];
 }
 
+//parse es estatico. convierte un string en un número que representa una fecha
 export const isDate = date => !isNaN(Date.parse(date));

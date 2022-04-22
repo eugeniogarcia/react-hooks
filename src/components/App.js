@@ -66,8 +66,10 @@ export default function App () {
             >
               <Suspense fallback={<PageSpinner/>}>
                 <Routes>
+                  <Route path="/" element={<BookingsPage />} />
                   <Route path="/bookings" element={<BookingsPage/>}/>
                   <Route path="/bookables/*" element={<BookablesPage/>}/>
+                  <Route path="/bookables" element={<BookablesPage />} />
                   <Route path="/users" element={<UsersPage/>}/>
                 </Routes>
               </Suspense>

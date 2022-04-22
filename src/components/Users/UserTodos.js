@@ -1,13 +1,10 @@
+import React from "react"; 
 import {useQuery} from "react-query";
 import getData from "../../utils/api";
 
 export default function UserTodos ({id}) {
-  const {data: todos} = useQuery(
-    ["todos", id],
-    () => getData(
-      `http://localhost:3001/todos?userId=${id}`,
-      1500
-    ),
+  const {data: todos} = useQuery(["todos", id],() => getData(`http://localhost:3001/todos?userId=${id}`,
+      1500),
     {suspense: true}
   );
 

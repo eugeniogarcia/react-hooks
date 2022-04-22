@@ -1,16 +1,11 @@
-import {Suspense} from "react";
+import React, {Suspense} from "react";
 import {Link} from "react-router-dom";
 import {useQuery} from "react-query";
 import getData from "../../utils/api";
 import Spinner from "../UI/Spinner";
 
 export default function UserBookings ({id}) {
-  const {data: bookings} = useQuery(
-    ["userbookings", id],
-    () => getData(
-      `http://localhost:3001/bookings?bookerId=${id}&_sort=date`,
-      3000
-    ),
+  const {data: bookings} = useQuery(["userbookings", id],() => getData(`http://localhost:3001/bookings?bookerId=${id}&_sort=date`,3000),
     {suspense: true}
   );
 

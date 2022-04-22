@@ -1,6 +1,6 @@
 import React, {
   useState,
-  unstable_useDeferredValue as useDeferredValue,
+  useDeferredValue,
   Suspense
 } from "react";
 
@@ -25,13 +25,11 @@ export default function UsersPage () {
   function switchUser (nextUser) {
     setSelectedUser(nextUser);
 
-    queryClient.prefetchQuery(
-      ["user", nextUser.id],
+    queryClient.prefetchQuery(["user", nextUser.id],
       () => getData(`http://localhost:3001/users/${nextUser.id}`)
     );
 
-    queryClient.prefetchQuery(
-      `http://localhost:3001/img/${nextUser.img}`,
+    queryClient.prefetchQuery(`http://localhost:3001/img/${nextUser.img}`,
       () => new Promise((resolve) => {
         const img = new Image();
         img.onload = () => resolve(img);

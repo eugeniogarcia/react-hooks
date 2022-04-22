@@ -1,8 +1,8 @@
-import {unstable_useTransition} from 'react';
+import {useTransition} from 'react';
 import Spinner from "./Spinner";
 
 export default function ButtonPending ({children, onClick, ...props}) {
-  const [startTransition, isPending] = unstable_useTransition({
+  const [startTransition, isPending] = useTransition({
     timeoutMs: 3000
   });
 
